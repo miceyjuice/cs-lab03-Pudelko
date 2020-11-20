@@ -17,6 +17,7 @@
         <e p="Program.cs" t="Include" />
         <e p="Pudelko.cs" t="Include" />
         <e p="Pudelko.csproj" t="IncludeRecursive" />
+        <e p="UnitTestsPudelko.cs" t="Include" />
       </e>
       <e p="Pudelko.sln" t="IncludeFlat" />
     </e>

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using static Pudelko.Pudelko.UnitOfMeasure;
+using static PudelkoLibrary.Pudelko.UnitOfMeasure;
 
-namespace Pudelko
+namespace PudelkoLibrary
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Pudelko pudeleczko1 = new Pudelko(2.1, 3.05, 1, Meter);
+            Pudelko pudeleczko1 = new Pudelko(2.5, 9.321);
             
             Console.WriteLine(pudeleczko1.ToString());
             Console.WriteLine(pudeleczko1.ToString("m"));

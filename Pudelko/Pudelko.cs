@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Pudelko
+namespace PudelkoLibrary
 {
     public sealed class Pudelko : IFormattable, IEquatable<Pudelko>, IEnumerable<double>
     {
@@ -12,15 +12,13 @@ namespace Pudelko
 
         private double a, b, c;
 
-        private double A
+        public double A
         {
             get
             {
                 double temp = a;
                 if (_unit == UnitOfMeasure.Centimeter)
-                {
                     temp = a / 100;
-                }
                 else if (_unit == UnitOfMeasure.Millimeter)
                     temp = a / 1000;
 
@@ -28,15 +26,13 @@ namespace Pudelko
             }
         }
 
-        private double B
+        public double B
         {
             get
             {
                 double temp = b;
                 if (_unit == UnitOfMeasure.Centimeter)
-                {
                     temp = b / 100;
-                }
                 else if (_unit == UnitOfMeasure.Millimeter)
                     temp = b / 1000;
 
@@ -44,15 +40,13 @@ namespace Pudelko
             }
         }
 
-        private double C
+        public double C
         {
             get
             {
                 double temp = c;
                 if (_unit == UnitOfMeasure.Centimeter)
-                {
                     temp = c / 100;
-                }
                 else if (_unit == UnitOfMeasure.Millimeter)
                     temp = c / 1000;
 
@@ -88,7 +82,7 @@ namespace Pudelko
 
         private UnitOfMeasure _unit;
 
-        public Pudelko(double a = 10, double b = 10, double c = 10, UnitOfMeasure unit = UnitOfMeasure.Meter)
+        public Pudelko(double a = 0.1, double b = 0.1, double c = 0.1, UnitOfMeasure unit = UnitOfMeasure.Meter)
         {
             _unit = unit;
             
@@ -259,8 +253,6 @@ namespace Pudelko
             }
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() { }
     }
 }
