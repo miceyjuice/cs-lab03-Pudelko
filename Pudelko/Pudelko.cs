@@ -82,23 +82,56 @@ namespace PudelkoLibrary
 
         private UnitOfMeasure _unit;
 
-        public Pudelko(double a = 0.1, double b = 0.1, double c = 0.1, UnitOfMeasure unit = UnitOfMeasure.Meter)
+        public Pudelko(double? a = null, double? b = null, double? c = null, UnitOfMeasure unit = UnitOfMeasure.Meter)
         {
             _unit = unit;
-            
-            if (a <= 0 || b <= 0 || c <= 0)
+
+            double minimum = CalculateMinimum();
+
+            this.a = a.GetValueOrDefault(CalculateDefaults());
+            this.b = b.GetValueOrDefault(CalculateDefaults());
+            this.c = c.GetValueOrDefault(CalculateDefaults());
+
+            if (this.a < minimum || this.b < minimum || this.c < minimum)
             {
                 throw new ArgumentOutOfRangeException("Niepoprawna wartosc!");
             }
 
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            indexer = new[] {a, b, c};
+            indexer = new[] { this.a, this.b, this.c };
 
             if (A > 10 || B > 10 || C > 10)
             {
                 throw new ArgumentOutOfRangeException("Niepoprawna wartosc!");
+            }
+        }
+
+        private double CalculateDefaults()
+        {
+            switch (_unit)
+            {
+                case UnitOfMeasure.Meter:
+                    return 0.1;
+                case UnitOfMeasure.Centimeter:
+                    return 10;
+                case UnitOfMeasure.Millimeter:
+                    return 100;
+                default:
+                    throw new NotImplementedException("Nieobslugiwane");
+            }
+        }
+
+        private double CalculateMinimum()
+        {
+            switch (_unit)
+            {
+                case UnitOfMeasure.Meter:
+                    return 0.001;
+                case UnitOfMeasure.Centimeter:
+                    return 0.1;
+                case UnitOfMeasure.Millimeter:
+                    return 1;
+                default:
+                    throw new NotImplementedException("Nieobslugiwane");
             }
         }
 
@@ -139,12 +172,12 @@ namespace PudelkoLibrary
 
         public static bool operator ==(Pudelko p1, Pudelko p2) => p1.Equals(p2);
         public static bool operator !=(Pudelko p1, Pudelko p2) => !(p1 == p2);
-        public static explicit operator double[](Pudelko p) => new double[] {p.A, p.B, p.C};
-        public static implicit operator Pudelko(ValueTuple<int, int, int> v) => new Pudelko(v.Item1, v.Item2, v.Item3, UnitOfMeasure.Millimeter);    
+        public static explicit operator double[](Pudelko p) => new double[] { p.A, p.B, p.C };
+        public static implicit operator Pudelko(ValueTuple<int, int, int> v) => new Pudelko(v.Item1, v.Item2, v.Item3, UnitOfMeasure.Millimeter);
 
         public override string ToString()
         {
-            return $"{A} m \u00D7 {B} m \u00D7 {C} m";
+            return $"{String.Format("{0:0.000}", A)} m \u00D7 {String.Format("{0:0.000}", B)} m \u00D7 {String.Format("{0:0.000}", C)} m";
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -156,21 +189,20 @@ namespace PudelkoLibrary
         {
             switch (format)
             {
-                case "m":
-                    return ToString();
                 case "cm":
-                    return $"{A * 100} cm \u00D7 {B * 100} cm \u00D7 {C * 100} cm";
+                    return $"{String.Format("{0:0.0}", A * 100)} cm \u00D7 {String.Format("{0:0.0}", B * 100)} cm \u00D7 {String.Format("{0:0.0}", C * 100)} cm";
                 case "mm":
                     return $"{A * 1000} mm \u00D7 {B * 1000} mm \u00D7 {C * 1000} mm";
+                case "m":
                 default:
-                    throw new FormatException("Niepoprawny format!");
+                    return ToString();
             }
         }
 
         private static double GetRoundedNumber(double number)
         {
             number *= 1000;
-            number = (int) number;
+            number = (int)number;
             number /= 1000;
             return number;
         }
@@ -182,7 +214,7 @@ namespace PudelkoLibrary
             double[] numbers = new double[3];
             string u = null;
             var strings = name.Split(" \u00D7 ");
-            if(strings.Length != 3) throw new ArgumentException("Given string is not correct!");
+            if (strings.Length != 3) throw new ArgumentException("Given string is not correct!");
             for (var i = 0; i < 3; i++)
             {
                 var stringsy = strings[i].Split(" ");
@@ -219,7 +251,7 @@ namespace PudelkoLibrary
         {
             this.values = values;
         }
-        
+
         public bool MoveNext()
         {
             return (++position < values.Length);
