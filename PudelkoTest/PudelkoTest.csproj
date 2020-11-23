@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pudelko\Pudelko.csproj" />
+    <ProjectReference Include="..\PudelkoApp\PudelkoApp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PudelkoLibrary;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using PudelkoLibrary;
 
 namespace PudelkoUnitTests
 {
@@ -366,8 +366,6 @@ namespace PudelkoUnitTests
         }
 
 
-
-
         [DataTestMethod, TestCategory("Constructors")]
         [DataRow(-1.0)]
         [DataRow(0)]
@@ -447,16 +445,61 @@ namespace PudelkoUnitTests
 
 
         #region Pole, Objętość ===================================
-        // ToDo
 
+        [TestMethod, TestCategory("Pole")]
+        [DataRow(1, 3, 4.5, 42)]
+        [DataRow(1.2, 4.1, 7.65, 90.930000)]
+        [DataRow(5.4, 3.56, 9.1, 201.520000)]
+        [DataRow(3.1, 1.5, 6.3, 67.260000)]
+        [DataRow(9.01, 5.5, 2.9, 183.268000)]
+        public void CheckIfAreaIsCalculatedProperly(double a, double b, double c, double area)
+        {
+            var p = new Pudelko(a, b, c);
+            Assert.AreEqual(area, p.Pole);
+        }
+
+        [TestMethod, TestCategory("Objetosc")]
+        [DataRow(1, 3, 4.5, 13.500000000)]
+        [DataRow(1.2, 4.1, 7.65, 37.638000000)]
+        [DataRow(5.4, 3.56, 9.1, 174.938400000)]
+        [DataRow(3.1, 1.5, 6.3, 29.295000000)]
+        [DataRow(9.01, 5.5, 2.9, 143.709500000)]
+        public void CheckIfVolumeIsCalculatedProperly(double a, double b, double c, double volume)
+        {
+            var p = new Pudelko(a, b, c);
+            Assert.AreEqual(volume, p.Objetosc);
+        }
+        
         #endregion
-
+        
         #region Equals ===========================================
-        // ToDo
+
+        [TestMethod, TestCategory("Equals")]
+        [DataRow(1.2, 2.1, 5.5, 2.1, 5.5, 1.2)]
+        public void CheckIfTwoBoxesAreTheSame(double a1, double b1, double c1, double a2, double b2, double c2)
+        {
+            var p1 = new Pudelko(a1, b1, c1);
+            var p2 = new Pudelko(a2, b2, c2);
+            Assert.AreEqual(true, p1 == p2);
+        }
+        
         #endregion
 
         #region Operators overloading ===========================
-        // ToDo
+
+        [TestMethod, TestCategory("Operators overloading")]
+        [DataRow(2,3,4, 6,1,9, 8,3,9)]
+        [DataRow(5,1,2, 2,1,3, 7,1,3)]
+        [DataRow(7,9,5, 1,8,2, 8,9,5)]
+        public void CheckIfTwoBoxesConnectIntoOne(double a1, double b1, double c1, double a2, double b2, double c2, double a3, double b3, double c3)
+        {
+            var p1 = new Pudelko(a1, b1, c1);
+            var p2 = new Pudelko(a2, b2, c2);
+            var p3 = new Pudelko(a3, b3, c3);
+
+            Assert.AreEqual(p3, p1+p2);
+        }
+        
         #endregion
 
         #region Conversions =====================================
@@ -510,6 +553,16 @@ namespace PudelkoUnitTests
 
         #region Parsing =========================================
 
+        [TestMethod, TestCategory("Parsing")]
+        [DataRow("2.500 m × 1.500 m × 1.000 m", 2.5, 1.5, 1)]
+        [DataRow("200 cm × 100 cm × 610 cm", 2, 1,6.1)]
+        [DataRow("31 cm × 190 cm × 480 cm", 0.31, 1.9,4.8)]
+        public void CheckIfStringWasParsed(string name, double a, double b, double c)
+        {
+            var p = new Pudelko(a,b,c);
+            var actual = Pudelko.Parse(name);
+            Assert.AreEqual(p,actual);
+        }
         #endregion
 
     }

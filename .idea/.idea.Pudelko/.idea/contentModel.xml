@@ -1,25 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="C:\Users\mySea\.nuget\packages\microsoft.net.test.sdk\16.5.0\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\mySea\.nuget\packages\microsoft.testplatform.testhost\16.5.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\mySea\.nuget\packages\microsoft.testplatform.testhost\16.5.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\mySea\.nuget\packages\mstest.testadapter\2.1.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\mySea\.nuget\packages\mstest.testadapter\2.1.2\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+    <e p="C:\Users\mySea\.nuget\packages\mstest.testadapter\2.1.2\build\netcoreapp1.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
     <e p="C:\Users\mySea\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\mySea\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Pudelko.1406490310.00" t="ExcludeRecursive" />
     <e p="D:\Projekty\cs-lab03-Pudelko" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Pudelko" t="IncludeRecursive">
+      <e p="Pudelko.sln" t="IncludeFlat" />
+      <e p="PudelkoApp" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Extensions.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Pudelko.AssemblyInfo.cs" t="Include" />
+              <e p="PudelkoApp.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
         <e p="Program.cs" t="Include" />
+        <e p="PudelkoApp.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="PudelkoLibrary" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="PudelkoLibrary.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Pudelko.cs" t="Include" />
-        <e p="Pudelko.csproj" t="IncludeRecursive" />
+        <e p="PudelkoLibrary.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="PudelkoTest" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="PudelkoTest.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="PudelkoTest.csproj" t="IncludeRecursive" />
         <e p="UnitTestsPudelko.cs" t="Include" />
       </e>
-      <e p="Pudelko.sln" t="IncludeFlat" />
     </e>
   </component>
 </project>
